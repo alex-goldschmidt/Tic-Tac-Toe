@@ -1,0 +1,19 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+html {
+    display: grid;
+    justify-content: center;
+}
+
+body {
+    display: inline-block;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 25px;
+}
