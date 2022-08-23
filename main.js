@@ -25,14 +25,14 @@ xButton.addEventListener('click', markerSelection);
 oButton.addEventListener('click', markerSelection);
 
 const gameBoard = (() => {
-	for (let i=1; i<=9; i++) {
+	for (let i = 1; i <= 9; i++) {
 		const cell = document.createElement('div');
         cell.style.border = 'solid';
         cell.style.width = '150px';
         cell.style.height = '150px';
         cell.style.fontSize = '100px';
         cell.id = `${i}`;
-		cell.className = 'cell';
+        cell.className = 'cell';
         cell.style.display = 'grid';
         cell.style.justifyContent = 'center';
         cell.style.alignContent = 'center';
@@ -40,7 +40,12 @@ const gameBoard = (() => {
 
         cell.addEventListener('click', function cellClick() {
             cell.append(content.innerHTML);
-            console.log('hi');
+            if (content.innerHTML === 'X') {
+              content.innerHTML = 'O'
+            }
+            else {
+              content.innerHTML = 'X';
+            }
             cell.removeEventListener("click", cellClick);
         });
 
