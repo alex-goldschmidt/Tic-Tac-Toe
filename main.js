@@ -2,6 +2,10 @@ const xButton= document.querySelector('.X');
 const oButton= document.querySelector('.O');
 const container = document.querySelector('.container');
 const content = document.querySelector('.content');
+const players = document.querySelector('.players');
+const player1 = document.querySelector('.player1');
+const player2 = document.querySelector('.player2')
+
 
 const Player = (name, marker) => {
 	return { name, marker };
@@ -54,3 +58,18 @@ const gameBoard = (() => {
         container.style.gridTemplateColumns = `repeat(${3}, 1fr)`;
 	}
 })();
+
+xButton.addEventListener('click', function xClick() {
+    player1.innerHTML = "Player 1 is X";
+    player2.innerHTML = "Player 2 is O";
+    oButton.disabled = 'true';
+    xButton.disabled = 'true';
+    });
+
+oButton.addEventListener('click', function oClick() {
+     player1.innerHTML = "Player 1 is O";
+     player2.innerHTML = "Player 2 is X";
+     xButton.disabled = 'true';
+     oButton.disabled = 'true';
+    });
+
