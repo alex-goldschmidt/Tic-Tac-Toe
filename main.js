@@ -31,6 +31,8 @@ xButton.addEventListener('click', markerSelection);
 oButton.addEventListener('click', markerSelection);
 
 const gameBoard = (() => {
+    let count = 0
+
     const winningCombos = [
         [0, 1, 2],
         [3, 4, 5],
@@ -44,14 +46,14 @@ const gameBoard = (() => {
 
     function gameLogic() {
         if (checkWinX()) {
-            results.innerHTML = "Player X wins the game"
+            results.innerHTML = "Player X wins the game!"
         }
         if (checkWinO()) {
-            results.innerHTML = "Player O wins the game"
+            results.innerHTML = "Player O wins the game!"
         }
-        if (Tie()) {
-            results.innerHTML = "Tie!!"
-        }
+
+        tie();
+
     }
 
     function checkWinX() {
@@ -70,15 +72,16 @@ const gameBoard = (() => {
         })
     }
 
-    function Tie() {
-        return cells.forEach((cells) => {
-            return cells.innerHTML === "X" || cells.innerHTML === "O";
-        })
+    function tie() {
+        if (count === 9 && checkWinO() !== true && checkWinX() !== true ) {
+			results.innerHTML = "It\'s a tie!"
+		}
     }
 
         cells.forEach((cell) => {
             cell.addEventListener('click', function cellClick() {
                 cell.append(content.innerHTML);
+                count++;
                 gameLogic();
                 if (content.innerHTML === 'X') {
                   content.innerHTML = 'O';
