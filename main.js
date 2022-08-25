@@ -31,9 +31,55 @@ xButton.addEventListener('click', markerSelection);
 oButton.addEventListener('click', markerSelection);
 
 const gameBoard = (() => {
+    const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+
+    function gameLogic() {
+        if (checkWinX()) {
+            results.innerHTML = "Player X wins the game"
+        }
+        if (checkWinO()) {
+            results.innerHTML = "Player O wins the game"
+        }
+        if (Tie()) {
+            results.innerHTML = "Tie!!"
+        }
+    }
+
+    function checkWinX() {
+        return winningCombos.some((combo) => {
+            return combo.every((i) => {
+                return cells[i].innerHTML === "X";
+            })
+        })
+    }
+
+    function checkWinO() {
+        return winningCombos.some((combo) => {
+            return combo.every((i) => {
+                return cells[i].innerHTML === "O";
+            })
+        })
+    }
+
+    function Tie() {
+        return cells.forEach((cells) => {
+            return cells.innerHTML === "X" || cells.innerHTML === "O";
+        })
+    }
+
         cells.forEach((cell) => {
             cell.addEventListener('click', function cellClick() {
                 cell.append(content.innerHTML);
+                gameLogic();
                 if (content.innerHTML === 'X') {
                   content.innerHTML = 'O';
                 }
@@ -55,5 +101,5 @@ const gameBoard = (() => {
          player1.innerHTML = "Player 1 is O";
          player2.innerHTML = "Player 2 is X";
          xButton.disabled = 'true';
-         oButton.disabled = 'true'; 
+         oButton.disabled = 'true';    
 })})();
