@@ -1,5 +1,6 @@
 const xButton= document.querySelector('.X');
 const oButton= document.querySelector('.O');
+const buttons = document.querySelector('.buttons');
 const container = document.querySelector('.container');
 const content = document.querySelector('.content');
 const players = document.querySelector('.players');
@@ -8,12 +9,6 @@ const player2 = document.querySelector('.player2');
 const results = document.querySelector('.results');
 const cells = document.querySelectorAll('.cell');
 const restart = document.querySelector('.restart');
-
-
-const Player = (name, marker) => {
-	return { name, marker };
-    //marker = x or o
-}
 
 const markerSelection = (e) => {
     switch (e.target.dataset.value) {
@@ -47,14 +42,36 @@ const gameBoard = (() => {
 
     function gameLogic() {
         if (checkWinX()) {
-            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,1)";
+            restart.style.marginLeft = "215px";
+            restart.innerHTML = "Play Again";
+
             results.innerHTML = "Player X wins the game!";
+            results.style.color = "gold";
+            results.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            results.style.marginTop = "40px";
+            results.style.fontSize = "50px";
+
+            buttons.style.display = 'none';
+            players.style.display = 'none';
+            container.style.display = 'none';
         }
         if (checkWinO()) {
-            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,1)";
+            restart.style.marginLeft = "215px";
+            restart.innerHTML = "Play Again";
+
             results.innerHTML = "Player O wins the game!";
+            results.style.color = "blue";
+            results.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            results.style.marginTop = "40px";
+            results.style.fontSize = "50px";
+
+            buttons.style.display = 'none';
+            players.style.display = 'none';
+            container.style.display = 'none';
         }
-        tie();
+         tie()
     }
 
     function checkWinX() {
@@ -76,6 +93,18 @@ const gameBoard = (() => {
     function tie() {
         if (count === 9 && checkWinO() !== true && checkWinX() !== true ) {
 			results.innerHTML = "It\'s a tie!"
+            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,1)";
+            restart.style.marginLeft = "45px";
+            restart.innerHTML = "Play Again";
+
+            results.style.marginLeft = "5px";
+            results.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            results.style.marginTop = "40px";
+            results.style.fontSize = "50px";
+            
+            buttons.style.display = 'none';
+            players.style.display = 'none';
+            container.style.display = 'none';
 		}
     }
 
@@ -86,9 +115,11 @@ const gameBoard = (() => {
             gameLogic();
             if (content.innerHTML === 'X') {
               content.innerHTML = 'O';
+              cell.style.color = 'gold';
             }
             else {
               content.innerHTML = 'X';
+              cell.style.color = 'blue';
             }
             cell.removeEventListener("click", cellClick);
         });    
@@ -109,6 +140,5 @@ const gameBoard = (() => {
         })
 
     restart.addEventListener('click', function restartGame() {
-        console.log('it is working');
         window.location.reload();
 })})();
