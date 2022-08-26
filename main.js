@@ -15,7 +15,7 @@ const markerSelection = (e) => {
         case "X":
         console.log("X");
         content.innerHTML = "X";
-        break;
+        break;  
 
         case "O":
         console.log("O");
