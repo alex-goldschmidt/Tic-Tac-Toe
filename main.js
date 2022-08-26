@@ -7,6 +7,7 @@ const player1 = document.querySelector('.player1');
 const player2 = document.querySelector('.player2');
 const results = document.querySelector('.results');
 const cells = document.querySelectorAll('.cell');
+const restart = document.querySelector('.restart');
 
 
 const Player = (name, marker) => {
@@ -46,14 +47,14 @@ const gameBoard = (() => {
 
     function gameLogic() {
         if (checkWinX()) {
-            results.innerHTML = "Player X wins the game!"
+            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            results.innerHTML = "Player X wins the game!";
         }
         if (checkWinO()) {
-            results.innerHTML = "Player O wins the game!"
+            restart.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
+            results.innerHTML = "Player O wins the game!";
         }
-
         tie();
-
     }
 
     function checkWinX() {
@@ -78,20 +79,20 @@ const gameBoard = (() => {
 		}
     }
 
-        cells.forEach((cell) => {
-            cell.addEventListener('click', function cellClick() {
-                cell.append(content.innerHTML);
-                count++;
-                gameLogic();
-                if (content.innerHTML === 'X') {
-                  content.innerHTML = 'O';
-                }
-                else {
-                  content.innerHTML = 'X';
-                }
-                cell.removeEventListener("click", cellClick);
-            });    
-        })
+    cells.forEach((cell) => {
+        cell.addEventListener('click', function cellClick()  {
+            cell.append(content.innerHTML);
+            count++;
+            gameLogic();
+            if (content.innerHTML === 'X') {
+              content.innerHTML = 'O';
+            }
+            else {
+              content.innerHTML = 'X';
+            }
+            cell.removeEventListener("click", cellClick);
+        });    
+    })
 
     xButton.addEventListener('click', function xClick() {
         player1.innerHTML = "Player 1 is X";
@@ -105,4 +106,9 @@ const gameBoard = (() => {
          player2.innerHTML = "Player 2 is X";
          xButton.disabled = 'true';
          oButton.disabled = 'true';    
+        })
+
+    restart.addEventListener('click', function restartGame() {
+        console.log('it is working');
+        window.location.reload();
 })})();

@@ -52,3 +52,7 @@ body {
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
 }
+
+.restart {
+    margin-left: 200px;
+}
