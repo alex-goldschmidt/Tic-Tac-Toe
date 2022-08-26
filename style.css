@@ -1,6 +1,7 @@
 h1 {
     display: flex;
     justify-content: center;
+    font-family: monospace;
 }
 
 html {
@@ -28,8 +29,9 @@ body {
 }
 
 .player1, .player2 {
-    width: 50px;
+    width: 110px;
     height: 50px;
+    font-family: monospace;
 }
 
 .results {
@@ -39,7 +41,7 @@ body {
 }
 
 .cell {
-    border: solid;
+    border: 1px solid black;
     width: 150px;
     height: 150px;
     font-size: 100px;
@@ -55,4 +57,18 @@ body {
 
 .restart {
     margin-left: 200px;
+}
+
+.X {
+    background: none;
+    border: none;
+    color: gold;
+    font-size: 30px;
+}
+
+.O {
+    background: none;
+    border: none;
+    color: blue;
+    font-size: 30px;
 }

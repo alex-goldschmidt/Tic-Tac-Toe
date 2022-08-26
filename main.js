@@ -101,6 +101,7 @@ const gameBoard = (() => {
             results.style.boxShadow = "0 0 0 100vmax rgba(0,0,0,.3)";
             results.style.marginTop = "40px";
             results.style.fontSize = "50px";
+            results.style.color = 'white';
             
             buttons.style.display = 'none';
             players.style.display = 'none';
